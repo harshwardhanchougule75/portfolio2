@@ -1,17 +1,34 @@
 /** @type {import('next').NextConfig} */
+
+
 const nextConfig = {
-  /* config options here */
-  experimental: {
-    agentFeedback: true,
-  },
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
+ // Generate a static website
+ output: "export",
+
+
+ // GitHub repository name
+ basePath: process.env.GITHUB_ACTIONS
+   ? "/portflio2"
+   : "",
+
+
+ // Generate static HTML files
+ trailingSlash: true,
+
+
+ // Required for static image export
+ images: {
+   unoptimized: true,
+ },
+   turbopack: {
+   rules: {
+     "*.css": {
+       loaders: ["@tailwindcss/turbopack"],
+       as: "*.css",
+     },
+   },
+ },
 };
+
 
 export default nextConfig;
